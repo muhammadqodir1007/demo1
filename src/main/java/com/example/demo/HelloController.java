@@ -1,18 +1,29 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/hello")
+@AllArgsConstructor
 public class HelloController {
+
+    lalaRep lalaRep;
 
 
     @GetMapping
-    public String getS() {
+    public List<LalaEn> getS() {
+        return lalaRep.findAll();
+    }
 
+    @PostMapping
+    public ResponseEntity<?> post(@RequestBody LalaEn lalaEn) {
+        LalaEn save = lalaRep.save(lalaEn
+        );
 
-        return "eorifm4fmro4rfmo4mfo4m5f wemdm3edom3odm ";
+        return ResponseEntity.ok(save);
     }
 }
